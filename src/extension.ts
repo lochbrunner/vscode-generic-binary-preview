@@ -67,8 +67,9 @@ export async function openBinaryFilePreview(
     uri: vscode.Uri, context: vscode.ExtensionContext) {
   try {
     const html = await getHtml(uri);
+    const title = uri.fsPath.toString().split('/').pop();
     let panel = vscode.window.createWebviewPanel(
-        'binary viewer', uri.fsPath.toString(), vscode.ViewColumn.Active,
+        'binary viewer', title, vscode.ViewColumn.Active,
         {enableScripts: true, enableFindWidget: true});
 
     panel.webview.onDidReceiveMessage(message => {

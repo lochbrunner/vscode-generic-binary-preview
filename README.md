@@ -1,6 +1,10 @@
+[![Licence](https://img.shields.io/github/license/lochbrunner/vscode-generic-binary-preview.svg)](https://github.com/lochbrunner/vscode-generic-binary-preview)
+
 # Generic Binary Preview
 
 Open binary files and displays information generated from an external executable.
+
+![Demo](./assets/demo.gif)
 
 ## Configuration
 
