@@ -65,23 +65,21 @@ export async function openDialog(
 
 export async function openBinaryFilePreview(
     uri: vscode.Uri, context: vscode.ExtensionContext) {
-  let panel = vscode.window.createWebviewPanel(
-      'binary viewer', uri.fsPath.toString(), vscode.ViewColumn.Active,
-      {enableScripts: true, enableFindWidget: true});
-
-  panel.webview.onDidReceiveMessage(message => {
-    switch (message.command) {
-      case 'showBinary':
-        openBinaryFilePreview(vscode.Uri.parse(message.text), context);
-        return;
-    }
-  }, undefined, context.subscriptions);
-
   try {
-    panel.webview.html = await getHtml(uri);
+    const html = await getHtml(uri);
+    let panel = vscode.window.createWebviewPanel(
+        'binary viewer', uri.fsPath.toString(), vscode.ViewColumn.Active,
+        {enableScripts: true, enableFindWidget: true});
+
+    panel.webview.onDidReceiveMessage(message => {
+      switch (message.command) {
+        case 'showBinary':
+          openBinaryFilePreview(vscode.Uri.parse(message.text), context);
+          return;
+      }
+    }, undefined, context.subscriptions);
+    panel.webview.html = html;
   } catch (err) {
-    // executable could not read the binary: Doing nothing
-    vscode.window.showWarningMessage(err.message);
   }
 }
 
