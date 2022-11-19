@@ -61,7 +61,7 @@
     "typescript": "^3.3.3333",
     "vscode": "^1.1.34",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.8"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "fast-glob": "^2.2.7",
